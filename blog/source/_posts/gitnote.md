@@ -87,3 +87,15 @@ git tag -d tagname //删除本地标签
 git push origin --delete tagname //删除远程标签  
 git push origin tagname或git push origin :refs/tags/tagname //推送远程标签  
 git push origin --tags //一次性推送远程标签  
+
+## 垃圾回收
+>git gc
+
+gc意味着垃圾回收(garbage collect)，
+使用git gc指令，可以将松散的文件压缩。具体流程如文档所说：“Git 会不定时地自动运行称为 “auto gc” 的命令。大部分情况下该命令什么都不处理。不过要是存在太多松散对象 (loose object, 不在 packfile 中的对象) 或 packfile，Git 会进行调用 git gc 命令。gc 指垃圾收集 (garbage collect)，此命令会做很多工作：收集所有松散对象并将它们存入 packfile，合并这些 packfile 进一个大的 packfile，然后将不被任何 commit 引用并且已存在一段时间 (数月) 的对象删除。”
+
+>git gc --aggressive
+
+对本地git库进行更彻底清理和优化，这个指令花费的时间也会更长。 
+
+清空git缓存 git rm -r --cached . 
