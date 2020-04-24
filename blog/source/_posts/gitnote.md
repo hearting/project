@@ -99,3 +99,6 @@ gc意味着垃圾回收(garbage collect)，
 对本地git库进行更彻底清理和优化，这个指令花费的时间也会更长。 
 
 清空git缓存 git rm -r --cached . 
+
+## 升级
+>git update-git-for-windows
