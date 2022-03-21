@@ -111,3 +111,5 @@ toc:
     position: after
     symbol: '#'
     style: header-anchor
+
+baidu_push: true

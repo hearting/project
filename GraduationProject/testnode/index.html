@@ -1,0 +1,276 @@
+<!--单眼井显示-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>属性展示</title>
+    <meta charset="utf-8">
+    <script src="./three.js"></script>
+    <script src="./js/OrbitControls.js"></script>
+    <script src="./js/libs_dat.gui.min.js"></script>
+    <script src="./js/js_QuickHull.js"></script>
+    <script src="./js/libs_stats.min.js"></script>
+    <script src="./js/geometries_ConvexGeometry.js"></script>
+    <script src="./js/SceneUtils.js"></script>
+</head>
+<body>
+<div style="text-align:center">
+    <input id="fileInput" type="file" size="50" onchange="processFiles(this.files)" multiple/>
+    <button id="ok" onclick="draw()">加载</button>
+</div>
+<!--<div id="fileOutput"></div>-->
+</body>
+
+<script>
+    let data2=[]
+    let data3=[]
+    let points=[]
+    let points1=[]
+    let data1=[];
+    function processFiles(files) {
+        var input  = document.getElementById("fileInput"); //input file
+        let i=0
+        // var file = this.files[0];
+        for (var file of files) {
+            if (!!file) {
+                //读取本地文件，以gbk编码方式输出
+                var reader = new FileReader();
+                reader.readAsText(file, "gbk");
+                reader.onload = function () {
+                    //读取完毕后输出结果
+                    // console.log(this.result.toString().split('\r\n'));
+                    data1[i]=this.result.toString().split('\r\n')
+                    i++;
+                }
+            }
+        }
+        setTimeout(function(){
+            data1[0].forEach((item,index) =>{
+                data2[index] = item.split(' ').filter(a => a)
+            })
+            data1[1].forEach((item,index) =>{
+                data3[index] = item.split(' ').filter(a => a)
+            })
+            var length1=data2.length
+            var length2=data3.length
+            data2=data2.slice(15,length1-1)
+            data3=data3.slice(35,length2-1)
+            data2.forEach((data,index) => {
+                var o=new THREE.Vector3((data[1]-data2[0][1])/10,data[2]/1000000,(data[3]-data2[0][3])/10*2)
+                points.push(o);
+            })
+            console.log(points)
+            data2.forEach((data,index) => {
+                var o=new THREE.Vector3((data[1]-data2[0][1])/10-data3[index][3]*10-1,data[2]/1000000,(data[3]-data2[0][3])/10*2)
+                points1.push(o);
+            })
+            console.log(points1)
+
+        },500)
+
+    }
+
+    var renderer;
+    function initRender() {
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+    }
+
+    var camera;
+    function initCamera() {
+        var width = window.innerWidth; //窗口宽度
+        var height = window.innerHeight; //窗口高度
+        var ki = width / height; //窗口宽高比
+        var s = 50; //三维场景显示范围控制系数，系数越大，显示的范围越大
+        //创建相机对象
+        camera = new THREE.OrthographicCamera(-s * ki, s * ki, s, -s, 1, 1000);
+        camera.position.x = 0;
+        camera.position.y = 100;
+        camera.position.z = 0;
+        camera.up.x = 0;
+        camera.up.y = 0;
+        camera.up.z = 1;
+        camera.lookAt({
+            x : 0,
+            y : 0,
+            z : 0
+        })
+    }
+
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+
+    var light;
+    function initLight() {
+        scene.add(new THREE.AmbientLight(0x404040));
+
+        light = new THREE.DirectionalLight(0xffffff);
+        light.position.set(1,1,1);
+        scene.add(light);
+    }
+
+    //初始化性能插件
+    var stats;
+    function initStats() {
+        stats = new Stats();
+        document.body.appendChild(stats.dom);
+    }
+
+    //用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
+    var controls;
+    function initControls() {
+
+        controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+        // 如果使用animate方法时，将此函数删除
+        //controls.addEventListener( 'change', render );
+        // 使动画循环使用时阻尼或自转 意思是否有惯性
+        controls.enableDamping = true;
+        //动态阻尼系数 就是鼠标拖拽旋转灵敏度
+        //controls.dampingFactor = 0.25;
+        //是否可以缩放
+        controls.enableZoom = true;
+        //是否自动旋转
+        controls.autoRotate = false;
+        //设置相机距离原点的最远距离
+        controls.minDistance  = 20;
+        //设置相机距离原点的最远距离
+        controls.maxDistance  = 160;
+        //是否开启右键拖拽
+        controls.enablePan = true;
+    }
+
+    //生成gui设置配置项
+    var gui,spGroup,tubeMesh;
+    function initGui() {
+        //声明一个保存需求修改的相关数据的对象
+        gui = {
+            numberOfPoints:5,
+            segments:64,
+            radius:0.9,
+            radiusSegments:8,
+            closed:false,
+            newPoints:function () {
+                //生成一些随机点放置到数组当中
+                gui.points = points;
+                gui.redraw();
+            },
+            redraw:function () {
+                //清楚掉场景中原来的模型对象
+                scene.remove(spGroup);
+                scene.remove(tubeMesh);
+                //重新绘制模型
+                generatePoints(gui.points, gui.segments, gui.radius, gui.radiusSegments, gui.closed);
+            }
+        };
+        var datGui = new dat.GUI();
+        //将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
+        datGui.add(gui, 'newPoints');
+        datGui.add(gui, 'numberOfPoints', 2, 15).step(1).onChange(gui.newPoints);
+        datGui.add(gui, 'segments', 0, 200).step(1).onChange(gui.redraw);
+        datGui.add(gui, 'radius', 0, 10).onChange(gui.redraw);
+        datGui.add(gui, 'radiusSegments', 0, 100).step(1).onChange(gui.redraw);
+        datGui.add(gui, 'closed').onChange(gui.redraw);
+
+
+        gui.newPoints();
+    }
+
+    //通过配置项绘制出几何体
+    function generatePoints(points, segments, radius, radiusSegments, closed) {
+        spGroup = new THREE.Object3D(); //赋值spGroup存储模型点的3d对象
+        var material = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: false}); //声明一个红色普通纹理
+        //将所有的顶点创建出球形存储到spGroup内
+        points.forEach(function (point) {
+
+            var spGeom = new THREE.SphereGeometry(0.2);
+            var spMesh = new THREE.Mesh(spGeom, material);
+            spMesh.position.copy(point);
+            spGroup.add(spMesh);
+        });
+        // 将spGroup对象添加到场景当中
+        scene.add(spGroup);
+
+        // THREE.CatmullRomCurve3方法可以将一组顶点生成一条平滑的曲线
+        var tubeGeometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points), segments, radius, radiusSegments, closed);
+        //将模型对象赋值给tubeMesh并添加到场景当中
+        tubeMesh = createMesh(tubeGeometry);
+        scene.add(tubeMesh);
+        var axis = new THREE.AxisHelper(3);
+        scene.add(axis);
+        // 加入一个地面
+        var groundGeometry = new THREE.PlaneGeometry(100, 100, 4, 4);
+        var groundMaterial = new THREE.MeshLambertMaterial({color: 0x777777}); // MeshBasicMaterial 材质不能接收阴影
+        ground = new THREE.Mesh(groundGeometry, groundMaterial);
+        ground.rotation.set(0, 0, -0.5 * Math.PI); // 沿着 Z轴旋转-90°
+        ground.receiveShadow = true;
+        scene.add(ground);
+        //加入管上直线
+        points.forEach((data, index) => {
+            geometry = new THREE.Geometry();
+            geometry.vertices.push(
+                data, points1[index]
+            );
+            var linematerial = new THREE.LineBasicMaterial({
+                color: 0xdd3388,
+                linewidth: 1,
+                linecap: 'butt',
+                linejoin: 'butt'
+            });
+            var line = new THREE.Line(geometry, linematerial);
+            scene.add(line);
+        })
+    }
+    function createMesh(geom) {
+
+        // 创建两个纹理
+        //创建一个透明纹理
+        var meshMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, transparent: true, opacity: 0.3,wireframe: true});
+        var meshMaterial1=new THREE.MeshNormalMaterial({side: THREE.DoubleSide})//设置成两面都可见
+        //创建一个线框纹理
+        // var wireFrameMat = new THREE.MeshBasicMaterial();
+        // wireFrameMat.wireframe = true;
+        // 使用纹理和几何体创建模型
+        var mesh = THREE.SceneUtils.createMultiMaterialObject(geom, [meshMaterial, meshMaterial1]);
+
+        return mesh;
+    }
+
+    function render() {
+        renderer.render( scene, camera );
+    }
+
+    //窗口变动触发的函数
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        render();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+    }
+
+    function animate() {
+        //更新控制器
+        controls.update();
+        render();
+
+        //更新性能插件
+        stats.update();
+        requestAnimationFrame(animate);
+    }
+    function draw() {
+        initRender();
+        initScene();
+        initCamera();
+        initLight();
+        initControls();
+        initStats();
+        initGui();
+        animate();
+        window.onresize = onWindowResize;
+    }
+</script>
+
+</html>

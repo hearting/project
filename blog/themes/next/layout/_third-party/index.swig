@@ -15,3 +15,4 @@
 
 {% include 'tags/pdf.swig' %}
 {% include 'tags/mermaid.swig' %}
+{% include 'gitment.swig' %}

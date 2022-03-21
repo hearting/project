@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="reset.css">
+    <title></title>
+
+    <style type="text/css">
+        body{
+            background-color: rgb(20, 127, 193);
+        }
+
+
+        /*全局效果*/
+        #wrap{
+            width: 1225px;
+            height: 1225px;
+            margin: auto;
+            position: relative;
+            font-size: 40px;
+            background-color: rgb(20, 127, 193);
+        }
+
+        .title{
+            width: 100%;
+            height: 100px;
+            color: red;
+            text-align: center;
+            line-height: 100px;
+            background-color: bisque;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .tupian{
+            width: 600px;
+            height: 398px;
+            background-color: aquamarine;
+            background-image: url("./images/1.jpg");
+            background-size: 600px 398px ;
+            background-repeat: no-repeat;
+            float: left;
+            margin-left: 50px;
+        }
+        .anniu{
+            width: 500px;
+            height: 398px;
+            background-color: bisque;
+            float: right;
+            margin-right: 50px;
+        }
+        .anniu-wrap{
+            height: 398px;
+            list-style: none;
+            width: 500px;
+            background-color: bisque;
+            float: right;
+            margin-right: 50px;
+        }
+        .anniu-wrap li{
+            background-color: aliceblue;
+            width: 500px;
+            height: 80px;
+            margin: 15px 0;
+            line-height: 80px;
+        }
+        .anniu-wrap li a{
+            display: block;
+            height: 80px;
+            width: 500px;
+            text-align: center;
+        }
+        .anniu-wrap li a:hover{
+            background-color: blueviolet;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="wrap">
+    <div class="title">
+        <span class="wenzi">钻井数据三维可视化平台</span>
+    </div>
+    <div class="tupian"></div>
+
+    <ul class="anniu-wrap">
+        <li><a href="test1.html">单井眼线框模式展示</a></li>
+        <li><a href="jing.html">单井眼着色模式展示</a></li>
+        <li><a href="index.html">属性展示</a></li>
+        <li><a href="test3.html">多井眼展示</a></li>
+    </ul>
+
+
+</div>
+</body>
+</html>
+
+
+
+

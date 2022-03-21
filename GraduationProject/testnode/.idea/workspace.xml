@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cc90b5ab-da5f-4be0-931b-025f566464f8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1pppUMcv08Tmu4Gc7XVVrXv5OE1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.20.1" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.20.1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/js" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GraduationProject\testnode\js" />
+      <recent name="E:\GraduationProject\testnode" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\GraduationProject\testnode\js" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.Three.js">
+    <configuration name="Three.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/Three.js" working-dir="$PROJECT_DIR$/js">
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.Three.js" />
+        <item itemvalue="npm.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc90b5ab-da5f-4be0-931b-025f566464f8" name="Default Changelist" comment="" />
+      <created>1615889901582</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615889901582</updated>
+      <workItem from="1615889903074" duration="877000" />
+      <workItem from="1615900031339" duration="2984000" />
+      <workItem from="1617604469692" duration="50000" />
+      <workItem from="1617604533577" duration="39000" />
+      <workItem from="1617604585972" duration="15000" />
+      <workItem from="1618039575978" duration="40000" />
+      <workItem from="1618039629503" duration="21000" />
+      <workItem from="1618039688137" duration="102000" />
+      <workItem from="1618039803450" duration="949000" />
+      <workItem from="1618042916378" duration="1274000" />
+      <workItem from="1618044652377" duration="138000" />
+      <workItem from="1619579790790" duration="17000" />
+      <workItem from="1619579820311" duration="45299000" />
+      <workItem from="1620194024712" duration="4825000" />
+      <workItem from="1620274389624" duration="5821000" />
+      <workItem from="1620314424789" duration="28583000" />
+      <workItem from="1620385212620" duration="2074000" />
+      <workItem from="1620389342995" duration="77478000" />
+      <workItem from="1621107646816" duration="7440000" />
+      <workItem from="1621279722767" duration="2316000" />
+      <workItem from="1621394706371" duration="11205000" />
+      <workItem from="1621445586867" duration="4105000" />
+      <workItem from="1621497854336" duration="1190000" />
+      <workItem from="1621578016433" duration="2158000" />
+      <workItem from="1621771369684" duration="214000" />
+      <workItem from="1621773129749" duration="460000" />
+      <workItem from="1622359741252" duration="6895000" />
+      <workItem from="1622505096075" duration="1061000" />
+      <workItem from="1622804504210" duration="101000" />
+      <workItem from="1625317476782" duration="11000" />
+      <workItem from="1625317500842" duration="13000" />
+      <workItem from="1627629390561" duration="54000" />
+      <workItem from="1627629456135" duration="20000" />
+      <workItem from="1635774321037" duration="43000" />
+      <workItem from="1635774746463" duration="163000" />
+      <workItem from="1635774985751" duration="28000" />
+      <workItem from="1635775048814" duration="380000" />
+      <workItem from="1635775519449" duration="181000" />
+      <workItem from="1635775842012" duration="295000" />
+      <workItem from="1635776213697" duration="29000" />
+      <workItem from="1635776289246" duration="37000" />
+      <workItem from="1635776338203" duration="23000" />
+      <workItem from="1635776374425" duration="66000" />
+      <workItem from="1647417140769" duration="2756000" />
+      <workItem from="1647506958779" duration="1307000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="461" y="184" key="SettingsEditor" timestamp="1635776326199">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="461" y="184" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1635776326199" />
+  </component>
+</project>
